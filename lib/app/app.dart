@@ -7,7 +7,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Fliper Demo',
-      theme: fliperTheme,
+      theme: buildFliperTheme(),
       home: HomeView(),
     );
   }
