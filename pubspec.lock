@@ -43,13 +43,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.5.0"
-  auto_route:
-    dependency: "direct main"
-    description:
-      name: auto_route
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -548,13 +541,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.0"
-  pixel_perfect:
-    dependency: "direct main"
-    description:
-      name: pixel_perfect
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.9"
   platform:
     dependency: transitive
     description:
