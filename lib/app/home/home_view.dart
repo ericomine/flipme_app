@@ -1,9 +1,11 @@
+import 'package:flipme_app/app/home/home_store.dart';
 import 'package:flipme_app/app/home/widgets/wealth_summary_card.dart';
 import 'package:flipme_app/app/shared/extensions/context_x.dart';
 import 'package:flutter/material.dart';
-import 'package:pixel_perfect/pixel_perfect.dart';
 
 class HomeView extends StatelessWidget {
+  final store = HomeStore();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

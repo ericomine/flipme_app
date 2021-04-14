@@ -42,7 +42,7 @@ class WealthSummaryCard extends StatelessWidget {
               title: Text("Seu resumo", style: context.textTheme.headline6),
               contentPadding: const EdgeInsets.all(0),
               trailing: Container(
-                width: 10,
+                width: 20,
                 child: IconButton(
                   icon: Icon(Icons.more_vert, size: 16),
                   onPressed: onTapThreeDots,
