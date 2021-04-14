@@ -298,6 +298,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+  lint:
+    dependency: "direct dev"
+    description:
+      name: lint
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.3"
   logging:
     dependency: transitive
     description:
@@ -375,6 +382,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.0"
+  pixel_perfect:
+    dependency: "direct main"
+    description:
+      name: pixel_perfect
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.9"
   pool:
     dependency: transitive
     description:
