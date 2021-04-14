@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -7,7 +9,9 @@ import 'app/app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await DesktopWindow.setWindowSize(Size(270, 480));
+  if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
+    await DesktopWindow.setWindowSize(Size(270, 480));
+  }
   await Hive.initFlutter();
   await Hive.openBox("hasura");
   runApp(App());
