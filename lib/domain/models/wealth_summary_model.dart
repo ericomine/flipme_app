@@ -2,34 +2,34 @@ import 'dart:convert';
 
 class WealthSummaryModel {
   final int id;
-  final double cdi;
-  final double gain;
-  final double profitabiliy;
-  final double total;
+  final num cdi;
+  final num gain;
+  final num profitability;
+  final num total;
   final bool hasHistory;
 
   WealthSummaryModel(
     this.id,
     this.cdi,
     this.gain,
-    this.profitabiliy,
+    this.profitability,
     this.total,
     this.hasHistory,
   );
 
   WealthSummaryModel copyWith({
     int? id,
-    double? cdi,
-    double? gain,
-    double? profitabiliy,
-    double? total,
+    num? cdi,
+    num? gain,
+    num? profitabiliy,
+    num? total,
     bool? hasHistory,
   }) {
     return WealthSummaryModel(
       id ?? this.id,
       cdi ?? this.cdi,
       gain ?? this.gain,
-      profitabiliy ?? this.profitabiliy,
+      profitabiliy ?? this.profitability,
       total ?? this.total,
       hasHistory ?? this.hasHistory,
     );
@@ -40,7 +40,7 @@ class WealthSummaryModel {
       'id': id,
       'cdi': cdi,
       'gain': gain,
-      'profitabiliy': profitabiliy,
+      'profitability': profitability,
       'total': total,
       'hasHistory': hasHistory,
     };
@@ -51,7 +51,7 @@ class WealthSummaryModel {
       map['id'],
       map['cdi'],
       map['gain'],
-      map['profitabiliy'],
+      map['profitability'],
       map['total'],
       map['hasHistory'],
     );
@@ -64,7 +64,7 @@ class WealthSummaryModel {
 
   @override
   String toString() {
-    return 'WealthSummaryModel(id: $id, cdi: $cdi, gain: $gain, profitabiliy: $profitabiliy, total: $total, hasHistory: $hasHistory)';
+    return 'WealthSummaryModel(id: $id, cdi: $cdi, gain: $gain, profitability: $profitability, total: $total, hasHistory: $hasHistory)';
   }
 
   @override
@@ -75,7 +75,7 @@ class WealthSummaryModel {
         other.id == id &&
         other.cdi == cdi &&
         other.gain == gain &&
-        other.profitabiliy == profitabiliy &&
+        other.profitability == profitability &&
         other.total == total &&
         other.hasHistory == hasHistory;
   }
@@ -85,7 +85,7 @@ class WealthSummaryModel {
     return id.hashCode ^
         cdi.hashCode ^
         gain.hashCode ^
-        profitabiliy.hashCode ^
+        profitability.hashCode ^
         total.hashCode ^
         hasHistory.hashCode;
   }

@@ -1,4 +1,4 @@
-const String getWealthSummary = r'''
+const String getWealthSummaryQuery = r'''
   query GetWealthSummary {
     wealthSummary {
       cdi

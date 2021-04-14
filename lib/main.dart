@@ -9,5 +9,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DesktopWindow.setWindowSize(Size(270, 480));
   await Hive.initFlutter();
+  await Hive.openBox("hasura");
   runApp(App());
 }

@@ -39,6 +39,21 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     });
   }
 
+  final _$errorMessageAtom = Atom(name: '_HomeStoreBase.errorMessage');
+
+  @override
+  String get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
+
   final _$wealthSummaryAtom = Atom(name: '_HomeStoreBase.wealthSummary');
 
   @override
@@ -54,18 +69,12 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     });
   }
 
-  final _$_HomeStoreBaseActionController =
-      ActionController(name: '_HomeStoreBase');
+  final _$loadWealthSummaryAsyncAction =
+      AsyncAction('_HomeStoreBase.loadWealthSummary');
 
   @override
-  void loadWealthSummary() {
-    final _$actionInfo = _$_HomeStoreBaseActionController.startAction(
-        name: '_HomeStoreBase.loadWealthSummary');
-    try {
-      return super.loadWealthSummary();
-    } finally {
-      _$_HomeStoreBaseActionController.endAction(_$actionInfo);
-    }
+  Future<bool> loadWealthSummary() {
+    return _$loadWealthSummaryAsyncAction.run(() => super.loadWealthSummary());
   }
 
   @override
@@ -73,6 +82,7 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     return '''
 loading: ${loading},
 didLoad: ${didLoad},
+errorMessage: ${errorMessage},
 wealthSummary: ${wealthSummary}
     ''';
   }
