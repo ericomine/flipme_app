@@ -21,6 +21,11 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    if (store.locale.isEmpty) {
+      final locale = Localizations.localeOf(context).toString();
+      store.setLocale(locale);
+    }
+
     return Scaffold(
       body: SizedBox.expand(
         child: Container(

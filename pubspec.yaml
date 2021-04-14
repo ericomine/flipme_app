@@ -11,12 +11,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   animations: ^2.0.0
   auto_route: ^1.0.2
   graphql: ^5.0.0-nullsafety.4
   hive: ^2.0.3
-  hive_flutter: ^1.0.0
-  
+  hive_flutter: ^1.0.0  
   flutter_mobx: ^2.0.0
   mobx: ^2.0.1
   mobx_codegen: ^2.0.1
@@ -26,6 +27,7 @@ dependencies:
   desktop_window: ^0.4.0
   pixel_perfect: ^1.0.9
   envify: ^2.0.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
