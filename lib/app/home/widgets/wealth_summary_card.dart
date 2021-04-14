@@ -1,5 +1,6 @@
-import 'package:flipme_app/app/shared/extensions/context_x.dart';
 import 'package:flutter/material.dart';
+
+import '../../shared/extensions/context_x.dart';
 
 class WealthSummaryCard extends StatelessWidget {
   final String total;
@@ -11,10 +12,10 @@ class WealthSummaryCard extends StatelessWidget {
 
   const WealthSummaryCard({
     Key? key,
-    this.total = "R\$ 3.200.876,00",
-    this.profitability = "2,767%",
-    this.cdi = "3,45%",
-    this.gain = "R\$1833,23",
+    this.total = "N/A",
+    this.profitability = "N/A",
+    this.cdi = "N/A",
+    this.gain = "N/A",
     this.onTapThreeDots,
     this.onTapSeeMore,
   }) : super(key: key);
@@ -42,7 +43,7 @@ class WealthSummaryCard extends StatelessWidget {
               title: Text("Seu resumo", style: context.textTheme.headline6),
               contentPadding: const EdgeInsets.all(0),
               trailing: Container(
-                width: 10,
+                width: 20,
                 child: IconButton(
                   icon: Icon(Icons.more_vert, size: 16),
                   onPressed: onTapThreeDots,
