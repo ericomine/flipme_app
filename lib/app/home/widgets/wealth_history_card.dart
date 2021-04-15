@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -42,20 +44,37 @@ class WealthHistoryCard extends StatelessWidget {
 class WealthHistoryChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BarChart(
-      BarChartData(
-        alignment: BarChartAlignment.spaceAround,
-        titlesData: FlTitlesData(leftTitles: SideTitles(showTitles: false)),
-        borderData: FlBorderData(show: false),
-        maxY: 2000,
-        barGroups: [
-          BarChartGroupData(x: 1, barRods: [BarChartRodData(y: 1000)]),
-          BarChartGroupData(x: 2, barRods: [BarChartRodData(y: 1200)]),
-          BarChartGroupData(x: 3, barRods: [BarChartRodData(y: 1400)]),
-          BarChartGroupData(x: 4, barRods: [BarChartRodData(y: 1600)]),
-          BarChartGroupData(x: 5, barRods: [BarChartRodData(y: 1800)]),
-        ],
-      ),
+    final barGroups = [
+      BarChartGroupData(x: 0, barRods: [BarChartRodData(y: 1000)]),
+      BarChartGroupData(x: 1, barRods: [BarChartRodData(y: 1000)]),
+      BarChartGroupData(x: 2, barRods: [BarChartRodData(y: 1000)]),
+      BarChartGroupData(x: 3, barRods: [BarChartRodData(y: 1000)]),
+      BarChartGroupData(x: 4, barRods: [BarChartRodData(y: 1000)]),
+      BarChartGroupData(x: 5, barRods: [BarChartRodData(y: 1000)]),
+      BarChartGroupData(x: 6, barRods: [BarChartRodData(y: 1150)]),
+      BarChartGroupData(x: 7, barRods: [BarChartRodData(y: 1400)]),
+      BarChartGroupData(x: 8, barRods: [BarChartRodData(y: 1600)]),
+      BarChartGroupData(x: 9, barRods: [BarChartRodData(y: 1800)]),
+    ];
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        late List<BarChartGroupData> barGroupsDisplayed;
+        final width = constraints.maxWidth;
+
+        final count = min(width ~/ 300, 5);
+        barGroupsDisplayed = barGroups.getRange(5 - count, 10).toList();
+
+        return BarChart(
+          BarChartData(
+            alignment: BarChartAlignment.spaceAround,
+            titlesData: FlTitlesData(leftTitles: SideTitles(showTitles: false)),
+            borderData: FlBorderData(show: false),
+            maxY: 2000,
+            barGroups: barGroupsDisplayed,
+          ),
+        );
+      },
     );
   }
 }

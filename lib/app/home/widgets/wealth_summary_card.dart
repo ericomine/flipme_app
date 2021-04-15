@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../shared/extensions/context_x.dart';
+import '../../shared/responsive/responsive_builder.dart';
 import 'see_more_button.dart';
 import 'wealth_card.dart';
 
@@ -28,12 +29,13 @@ class WealthSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WealthCard(
-      content: buildContent(context),
+    return ResponsiveBuilder(
+      desktop: WealthCard(content: buildContent(context, totalFontSize: 15.5)),
+      mobile: WealthCard(content: buildContent(context, totalFontSize: 22.0)),
     );
   }
 
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context, {required double totalFontSize}) {
     return Builder(builder: (context) {
       if (cardHeight == 0.0) {
         WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
@@ -62,7 +64,8 @@ class WealthSummaryCard extends StatelessWidget {
               SizedBox(height: 5),
               Text(
                 total,
-                style: context.textTheme.headline6!.copyWith(fontSize: 15.5),
+                style: context.textTheme.headline6!
+                    .copyWith(fontSize: totalFontSize),
               ),
             ],
           ),
