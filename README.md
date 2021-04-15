@@ -31,6 +31,7 @@ flutter run
 
 ## Observações
 
+- É possível olhar a evolução do código através das branches no repositório.
 - O projeto foi baseado em ideias da Clean Architecture, porém por ser um projeto simples minimizei a geração de boilerplate.
 - Gerência de estado foi implementada com MobX (mantém o controller limpo, mas eu usaria também state_notifier ou cubit).
 - Foi utilizado o pacote graphql para implementar a comunicação com a API, o que torna possível substituir a implementação no Hasura por outra.
