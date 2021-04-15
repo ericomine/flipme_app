@@ -11,6 +11,10 @@
     <img src="./assets/readme/desktop_2.png" width="800"/>
 </div>
 
+## Pré-requisitos
+
+Este projeto faz uso de sound null-safety e não funciona com Flutter v1.22 ou inferior, é necessário utilizar Flutter v2. É recomendado utilizar a versão do channel stable.
+
 ## Instruções para execução
 
 1. Fazer git clone deste projeto.
@@ -19,11 +23,11 @@
 ```
 SECRET=<chave>
 ```
-4. Executar o build_runner para gerar o arquivo env.g.dart na pasta lib.
+5. Executar o build_runner para gerar o arquivo env.g.dart na pasta lib.
 ```
 flutter pub run build_runner build
 ```
-5. Seguir com os passos convencionais de build para Flutter
+6. Seguir com os passos convencionais de build para Flutter
 ```
 flutter pub get
 flutter run
