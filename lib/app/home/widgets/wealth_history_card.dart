@@ -62,7 +62,7 @@ class WealthHistoryChart extends StatelessWidget {
         late List<BarChartGroupData> barGroupsDisplayed;
         final width = constraints.maxWidth;
 
-        final count = min(width ~/ 300, 5);
+        final count = min(width ~/ 200, 5);
         barGroupsDisplayed = barGroups.getRange(5 - count, 10).toList();
 
         return BarChart(
