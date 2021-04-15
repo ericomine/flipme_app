@@ -45,13 +45,16 @@ abstract class _HomeStoreBase with Store {
   void setCardHeight(double value) => cardHeight = value;
 
   @action
+  void clearErrorMessage() => errorMessage = "";
+
+  @action
   Future<bool> loadWealthSummary() async {
     final result = await wealthSummaryService.getWealthSummary();
 
     if (result is Failure) {
       loading = false;
       didLoad = false;
-      errorMessage = result.message;
+      errorMessage = "Erro ao buscar dados de seu sumário.";
       return false;
     }
 
