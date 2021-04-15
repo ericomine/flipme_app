@@ -1,16 +1,29 @@
 # flipme_app
 
-A new Flutter project.
+## Instruções para execução
 
-## Getting Started
+1. Fazer git clone deste projeto.
+2. Criar um arquivo .env na raíz do projeto.
+3. Adicionar a chave secreta do Hasura:
+```
+SECRET=<chave>
+```
+4. Executar o build_runner para gerar o arquivo env.g.dart na pasta lib.
+```
+flutter pub run build_runner build
+```
+5. Seguir com os passos convencionais de build para Flutter
+```
+flutter pub get
+flutter run
+```
 
-This project is a starting point for a Flutter application.
+## Observações
 
-A few resources to get you started if this is your first Flutter project:
+- O projeto foi baseado em ideias da Clean Architecture, porém por ser um projeto simples minimizei a geração de boilerplate.
+- Gerência de estado foi implementada com MobX (mantém o controller limpo, mas eu usaria também state_notifier ou cubit).
+- Foi utilizado o pacote graphql para implementar a comunicação com a API, o que torna possível substituir a implementação no Hasura por outra.
+- Utilizei o package pixel_perfect para copiar o design do XD. A diferença principal é que a fonte utilizada é outra, pois a do protótipo não está disponível gratuitamente para uso Também utilizei a compilação do Flutter para Linux para acelerar o processo de desenvolvimento.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+

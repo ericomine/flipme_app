@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../shared/extensions/context_x.dart';
+import '../../shared/responsive/responsive_builder.dart';
+import 'see_more_button.dart';
+import 'wealth_card.dart';
 
 class WealthSummaryCard extends StatelessWidget {
+  final double cardHeight;
+  final void Function(double) setCardHeight;
   final String total;
   final String profitability;
   final String cdi;
@@ -10,8 +15,10 @@ class WealthSummaryCard extends StatelessWidget {
   final void Function()? onTapThreeDots;
   final void Function()? onTapSeeMore;
 
-  const WealthSummaryCard({
+  WealthSummaryCard({
     Key? key,
+    required this.cardHeight,
+    required this.setCardHeight,
     this.total = "N/A",
     this.profitability = "N/A",
     this.cdi = "N/A",
@@ -22,65 +29,65 @@ class WealthSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PhysicalModel(
-      color: Colors.black,
-      shadowColor: Colors.black,
-      borderRadius: BorderRadius.circular(10),
-      elevation: 2,
-      child: Container(
-        decoration: ShapeDecoration(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-            side: BorderSide(color: Colors.white),
-          ),
-          color: Colors.white,
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 19),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              title: Text("Seu resumo", style: context.textTheme.headline6),
-              contentPadding: const EdgeInsets.all(0),
-              trailing: Container(
-                width: 20,
-                child: IconButton(
-                  icon: Icon(Icons.more_vert, size: 16),
-                  onPressed: onTapThreeDots,
-                ),
+    return ResponsiveBuilder(
+      desktop: WealthCard(content: buildContent(context, totalFontSize: 15.5)),
+      mobile: WealthCard(content: buildContent(context, totalFontSize: 22.0)),
+    );
+  }
+
+  Widget buildContent(BuildContext context, {required double totalFontSize}) {
+    return Builder(builder: (context) {
+      if (cardHeight == 0.0) {
+        WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+          setCardHeight(context.size?.height ?? 0.0);
+        });
+      }
+
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ListTile(
+            title: Text("Seu resumo", style: context.textTheme.headline6),
+            contentPadding: const EdgeInsets.all(0),
+            trailing: Container(
+              width: 20,
+              child: IconButton(
+                icon: Icon(Icons.more_vert, size: 16),
+                onPressed: onTapThreeDots,
               ),
             ),
-            SizedBox(height: 12),
-            Column(
-              children: [
-                Text("Valor investido", style: context.textTheme.bodyText2),
-                SizedBox(height: 5),
-                Text(
-                  total,
-                  style: context.textTheme.headline6!.copyWith(fontSize: 15.5),
-                ),
-              ],
-            ),
-            SizedBox(height: 21),
-            Column(
-              children: [
-                IndicatorRow(name: "Rentabilidade/mês", value: profitability),
-                IndicatorRow(name: "CDI", value: cdi),
-                IndicatorRow(name: "Ganho/mês", value: gain),
-              ],
-            ),
-            SizedBox(height: 8),
-            Divider(height: 10, thickness: 0.5),
-            SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [SeeMoreButton(onTapSeeMore: onTapSeeMore)],
-            ),
-            SizedBox(height: 8),
-          ],
-        ),
-      ),
-    );
+          ),
+          SizedBox(height: 12),
+          Column(
+            children: [
+              Text("Valor investido", style: context.textTheme.bodyText2),
+              SizedBox(height: 5),
+              Text(
+                total,
+                style: context.textTheme.headline6!
+                    .copyWith(fontSize: totalFontSize),
+              ),
+            ],
+          ),
+          SizedBox(height: 21),
+          Column(
+            children: [
+              IndicatorRow(name: "Rentabilidade/mês", value: profitability),
+              IndicatorRow(name: "CDI", value: cdi),
+              IndicatorRow(name: "Ganho/mês", value: gain),
+            ],
+          ),
+          SizedBox(height: 8),
+          Divider(height: 10, thickness: 0.5),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [SeeMoreButton(onTapSeeMore: onTapSeeMore)],
+          ),
+          SizedBox(height: 8),
+        ],
+      );
+    });
   }
 }
 
@@ -111,34 +118,6 @@ class IndicatorRow extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class SeeMoreButton extends StatelessWidget {
-  final void Function()? onTapSeeMore;
-
-  const SeeMoreButton({Key? key, required this.onTapSeeMore}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTapSeeMore,
-      child: Container(
-        decoration: ShapeDecoration(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-            side: BorderSide(
-              color: context.themeData.primaryColor,
-            ),
-          ),
-        ),
-        padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
-        child: Text("VER MAIS",
-            style: context.textTheme.bodyText2!.copyWith(
-                color: context.themeData.primaryColor,
-                fontWeight: FontWeight.w700)),
       ),
     );
   }

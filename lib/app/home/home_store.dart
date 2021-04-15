@@ -28,6 +28,9 @@ abstract class _HomeStoreBase with Store {
   @observable
   WealthSummaryModel? wealthSummary;
 
+  @observable
+  double cardHeight = 0.0;
+
   String get totalWealthString =>
       CurrencyFormat(locale, true).format(wealthSummary!.total);
   String get profitabilityString =>
@@ -37,6 +40,9 @@ abstract class _HomeStoreBase with Store {
 
   @action
   void setLocale(String value) => locale = value;
+
+  @action
+  void setCardHeight(double value) => cardHeight = value;
 
   @action
   Future<bool> loadWealthSummary() async {

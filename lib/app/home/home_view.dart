@@ -1,8 +1,10 @@
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../shared/extensions/context_x.dart';
 import 'home_store.dart';
+import 'widgets/wealth_history_card.dart';
 import 'widgets/wealth_summary_card.dart';
 
 class HomeView extends StatefulWidget {
@@ -12,6 +14,8 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final store = HomeStore();
+
+  final cardKey = GlobalKey<FlipCardState>();
 
   @override
   void initState() {
@@ -36,16 +40,26 @@ class _HomeViewState extends State<HomeView> {
               future: store.loadWealthSummary(),
               builder: (_, AsyncSnapshot<bool?> snapshot) {
                 if (snapshot.hasData && snapshot.data!) {
-                  return Observer(
-                    builder: (_) {
-                      return WealthSummaryCard(
-                        total: store.totalWealthString,
-                        profitability: store.profitabilityString,
-                        cdi: store.cdiString,
-                        gain: store.gainString,
-                      );
-                    },
-                  );
+                  return FlipCard(
+                      key: cardKey,
+                      flipOnTouch: false,
+                      front: Observer(builder: (_) {
+                        return WealthSummaryCard(
+                          cardHeight: store.cardHeight,
+                          setCardHeight: store.setCardHeight,
+                          total: store.totalWealthString,
+                          profitability: store.profitabilityString,
+                          cdi: store.cdiString,
+                          gain: store.gainString,
+                          onTapSeeMore: cardKey.currentState?.toggleCard,
+                        );
+                      }),
+                      back: Observer(builder: (_) {
+                        return WealthHistoryCard(
+                          cardHeight: store.cardHeight,
+                          onTapSeeMore: cardKey.currentState?.toggleCard,
+                        );
+                      }));
                 }
                 return CircularProgressIndicator();
               },

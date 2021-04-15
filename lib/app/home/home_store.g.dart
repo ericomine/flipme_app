@@ -9,6 +9,21 @@ part of 'home_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeStore on _HomeStoreBase, Store {
+  final _$localeAtom = Atom(name: '_HomeStoreBase.locale');
+
+  @override
+  String get locale {
+    _$localeAtom.reportRead();
+    return super.locale;
+  }
+
+  @override
+  set locale(String value) {
+    _$localeAtom.reportWrite(value, super.locale, () {
+      super.locale = value;
+    });
+  }
+
   final _$loadingAtom = Atom(name: '_HomeStoreBase.loading');
 
   @override
@@ -69,6 +84,21 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     });
   }
 
+  final _$cardHeightAtom = Atom(name: '_HomeStoreBase.cardHeight');
+
+  @override
+  double get cardHeight {
+    _$cardHeightAtom.reportRead();
+    return super.cardHeight;
+  }
+
+  @override
+  set cardHeight(double value) {
+    _$cardHeightAtom.reportWrite(value, super.cardHeight, () {
+      super.cardHeight = value;
+    });
+  }
+
   final _$loadWealthSummaryAsyncAction =
       AsyncAction('_HomeStoreBase.loadWealthSummary');
 
@@ -77,13 +107,40 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     return _$loadWealthSummaryAsyncAction.run(() => super.loadWealthSummary());
   }
 
+  final _$_HomeStoreBaseActionController =
+      ActionController(name: '_HomeStoreBase');
+
+  @override
+  void setLocale(String value) {
+    final _$actionInfo = _$_HomeStoreBaseActionController.startAction(
+        name: '_HomeStoreBase.setLocale');
+    try {
+      return super.setLocale(value);
+    } finally {
+      _$_HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setCardHeight(double value) {
+    final _$actionInfo = _$_HomeStoreBaseActionController.startAction(
+        name: '_HomeStoreBase.setCardHeight');
+    try {
+      return super.setCardHeight(value);
+    } finally {
+      _$_HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
+locale: ${locale},
 loading: ${loading},
 didLoad: ${didLoad},
 errorMessage: ${errorMessage},
-wealthSummary: ${wealthSummary}
+wealthSummary: ${wealthSummary},
+cardHeight: ${cardHeight}
     ''';
   }
 }
